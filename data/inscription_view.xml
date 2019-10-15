@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <!-- form view -->
+    <record id="inscription_form" model="ir.ui.view">
+        <field name="name">inscription.form</field>
+        <field name="model">obj.inscription</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="inscription">
+                <sheet>
+                    <field name="image" widget="image" class="oe_left oe_avatar">
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"></label>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <notebook>
+                            <page string="Informations personnelles">
+                                <group>
+                                    <field name="cin"/>
+                                    <field name="datenais"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view -->
+    <record id="inscription_tree" model="ir.ui.view">
+        <field name="name">inscription.tree</field>
+        <field name="model">obj.inscription</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Inscription">
+                <field name="name"/>
+                <field name="cin"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- search view -->
+    <record id="inscription_search" model="ir.ui.view">
+        <field name="name">inscription.search</field>
+        <field name="model">obj.inscription</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <tree string="Inscription">
+                <field name="name"/>
+                <field name="cin"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- menu view -->
+    <record model="ir.actions.act_window" id="action_inscription">
+        <field name="name">inscription.search</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">obj.inscription</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="inscription_tree"></field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Cliquez ici pour créer une nouvelle inscription.</p>
+        </field>
+    </record>
+
+    <menuitem name="Module Inscription" id="menu" />
+        <menuitem name="Inscription" id="menu_inscription" parent="menu" sequence="1" />
+            <menuitem id="menu_inscription_action" parent="menu_inscription" action="action_inscription" />
+
+    </data>
+</odoo>
